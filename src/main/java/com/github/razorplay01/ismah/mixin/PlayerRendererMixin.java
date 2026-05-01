@@ -37,28 +37,28 @@ import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 *///?}
 
 //? if <1.21.9{
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
- //?}
+/*import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+ *///?}
 
 //? if >=1.21.9{
-/*import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.entity.ClientAvatarEntity;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.world.entity.Avatar;
-*///?}
+//?}
 
 //? if <1.21.11{
-import net.minecraft.client.model.PlayerModel;
+/*import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.RenderType;
-//?}
-//? if >=1.21.11{
-/*import net.minecraft.client.renderer.rendertype.RenderType;
-import net.minecraft.client.model.player.PlayerModel;
 *///?}
+//? if >=1.21.11{
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.model.player.PlayerModel;
+//?}
 
 //? if <1.21.2{
-@Mixin(PlayerRenderer.class)
+/*@Mixin(PlayerRenderer.class)
 public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>>
 		implements FirstPersonLayerHolder {
 
@@ -169,7 +169,7 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
 		accessor.setHumanoidArm(null);
 	}
 }
-//?}
+*///?}
 
 
 //? if >=1.21.2 && <1.21.9{
@@ -286,7 +286,7 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<net.minec
 
 
 //? if >= 1.21.9 {
-/*@Mixin(AvatarRenderer.class)
+@Mixin(AvatarRenderer.class)
 public abstract class PlayerRendererMixin<AvatarlikeEntity extends Avatar & ClientAvatarEntity>
 		extends LivingEntityRenderer<AvatarlikeEntity, AvatarRenderState, PlayerModel>
 		implements FirstPersonLayerHolder {
@@ -355,11 +355,11 @@ public abstract class PlayerRendererMixin<AvatarlikeEntity extends Avatar & Clie
 	}
 
 	//? if <1.21.11{
-	@WrapOperation(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitModelPart(Lnet/minecraft/client/model/geom/ModelPart;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/RenderType;IILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V"))
-	 //?}
+	/*@WrapOperation(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitModelPart(Lnet/minecraft/client/model/geom/ModelPart;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/RenderType;IILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V"))
+	 *///?}
 	//? if >=1.21.11{
-	/^@WrapOperation(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitModelPart(Lnet/minecraft/client/model/geom/ModelPart;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/rendertype/RenderType;IILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V"))
-			^///?}
+	@WrapOperation(method = "renderHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitModelPart(Lnet/minecraft/client/model/geom/ModelPart;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/rendertype/RenderType;IILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V"))
+			//?}
 	private void renderFirstPersonLayers(SubmitNodeCollector instance, ModelPart modelPart, PoseStack poseStack,
 	                                     RenderType renderType, int light, int overlay,
 	                                     TextureAtlasSprite textureAtlasSprite, Operation<Void> original) {
@@ -409,4 +409,4 @@ public abstract class PlayerRendererMixin<AvatarlikeEntity extends Avatar & Clie
 		poseStack.popPose();
 	}
 }
-*///?}
+//?}

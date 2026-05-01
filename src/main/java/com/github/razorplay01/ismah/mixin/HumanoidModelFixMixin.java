@@ -21,11 +21,11 @@ import java.util.Map;
 import java.util.Set;
 
 //? if >=1.21.2{
-/*import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
-		*///?}
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+		//?}
 
 //? if <1.21.2{
-@Mixin(HumanoidModel.class)
+/*@Mixin(HumanoidModel.class)
 public abstract class HumanoidModelFixMixin<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.client.model.AgeableListModel<T> implements ArmedModel, HeadedModel {
 	@Unique
 	private Map<ModelPart, List<ModelPart.Cube>> ismah$savedCubes;
@@ -86,13 +86,13 @@ public abstract class HumanoidModelFixMixin<T extends net.minecraft.world.entity
 		}
 	}
 }
-//?}
+*///?}
 
 
 //? if >=1.21.2{
-/*@Mixin(HumanoidModel.class)
+@Mixin(HumanoidModel.class)
 public abstract class HumanoidModelFixMixin<T extends HumanoidRenderState> extends EntityModel<T>
-		implements ArmedModel/^? if >=1.21.9 {^//^<T>^//^?}^/, HeadedModel {
+		implements ArmedModel/*? if >=1.21.9 {*/<T>/*?}*/, HeadedModel {
 
 	@Unique
 	private Map<ModelPart, List<ModelPart.Cube>> ismah$savedCubes;
@@ -144,9 +144,9 @@ public abstract class HumanoidModelFixMixin<T extends HumanoidRenderState> exten
 			targetArm.zRot = 0.0F;
 		}
 
-		Set<ModelPart> armParts = new HashSet<>(targetArm.getAllParts() /^? if <1.21.6 {^/.collect(java.util.stream.Collectors.toSet())/^?}^/);
+		Set<ModelPart> armParts = new HashSet<>(targetArm.getAllParts() /*? if <1.21.6 {*//*.collect(java.util.stream.Collectors.toSet())*//*?}*/);
 		ismah$savedCubes = new IdentityHashMap<>();
-		for (ModelPart part : this.root().getAllParts() /^? if <1.21.6 {^/.toList()/^?}^/) {
+		for (ModelPart part : this.root().getAllParts() /*? if <1.21.6 {*//*.toList()*//*?}*/) {
 			ModelPartAccessor partAccessor = ((ModelPartAccessor) (Object) part);
 			List<ModelPart.Cube> cubes = partAccessor.ismah$getCubes();
 			if (!armParts.contains(part) && !cubes.isEmpty()) {
@@ -167,4 +167,4 @@ public abstract class HumanoidModelFixMixin<T extends HumanoidRenderState> exten
 		model.leftLeg.visible = bl;
 	}
 }
-*///?}
+//?}

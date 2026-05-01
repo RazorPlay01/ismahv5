@@ -21,19 +21,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 *///?}
 
 //? if >=1.21.9{
-/*import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
-*///?}
+//?}
 
 //? <1.21.11{
-import net.minecraft.client.model.PlayerModel;
-		//?}
+/*import net.minecraft.client.model.PlayerModel;
+		*///?}
 //? >=1.21.11{
-/*import net.minecraft.client.model.player.PlayerModel;
- *///?}
+import net.minecraft.client.model.player.PlayerModel;
+ //?}
 
 //? if <1.21.2{
-@Mixin(StuckInBodyLayer.class)
+/*@Mixin(StuckInBodyLayer.class)
 public abstract class StuckInBodyLayerMixin<T extends net.minecraft.world.entity.LivingEntity, M extends PlayerModel<T>> extends RenderLayer<T, M> {
 	protected StuckInBodyLayerMixin(RenderLayerParent<T, M> renderLayerParent) {
 		super(renderLayerParent);
@@ -67,7 +67,7 @@ public abstract class StuckInBodyLayerMixin<T extends net.minecraft.world.entity
 		return true;
 	}
 }
-//?}
+*///?}
 
 
 //? if >=1.21.2 && <1.21.9{
@@ -106,7 +106,7 @@ public abstract class StuckInBodyLayerMixin<M extends PlayerModel> extends Rende
 *///?}
 
 //? if >=1.21.9{
-/*@Mixin(StuckInBodyLayer.class)
+@Mixin(StuckInBodyLayer.class)
 public abstract class StuckInBodyLayerMixin<M extends PlayerModel, S> extends RenderLayer<AvatarRenderState, M> {
 	@Unique private ModelPart ismah$currentModelPart;
 	@Unique private AvatarRenderState ismah$renderState;
@@ -138,4 +138,4 @@ public abstract class StuckInBodyLayerMixin<M extends PlayerModel, S> extends Re
 		return true;
 	}
 }
-*///?}
+//?}

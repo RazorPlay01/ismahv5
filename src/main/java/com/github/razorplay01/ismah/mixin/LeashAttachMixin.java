@@ -17,11 +17,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 //? if < 1.21.1 {
-import net.minecraft.world.entity.Mob;
-//?}
+/*import net.minecraft.world.entity.Mob;
+*///?}
 //? if >= 1.21.1 {
-/*import net.minecraft.world.entity.Leashable;
- *///?}
+import net.minecraft.world.entity.Leashable;
+ //?}
 
 @Mixin(ClientPacketListener.class)
 public abstract class LeashAttachMixin {
@@ -29,14 +29,14 @@ public abstract class LeashAttachMixin {
 	private ClientLevel level;
 
 	//? if < 1.21.1 {
-	@Inject(method = "handleEntityLinkPacket(Lnet/minecraft/network/protocol/game/ClientboundSetEntityLinkPacket;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;setDelayedLeashHolderId(I)V"))
-	//?}
-	//? if >= 1.21.1 {
-	/*@Inject(method = "handleEntityLinkPacket", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Leashable;setDelayedLeashHolderId(I)V"))
+	/*@Inject(method = "handleEntityLinkPacket(Lnet/minecraft/network/protocol/game/ClientboundSetEntityLinkPacket;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;setDelayedLeashHolderId(I)V"))
 	*///?}
+	//? if >= 1.21.1 {
+	@Inject(method = "handleEntityLinkPacket", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Leashable;setDelayedLeashHolderId(I)V"))
+	//?}
 	private void onEntityAttach(ClientboundSetEntityLinkPacket clientboundSetEntityLinkPacket, CallbackInfo ci) {
 		Entity entity1 = this.level.getEntity(clientboundSetEntityLinkPacket.getSourceId());
-		if (entity1 instanceof /*? if >=1.21.1 {*//*Leashable*//*?} else {*/ Mob/*?}*/ target) {
+		if (entity1 instanceof /*? if >=1.21.1 {*/Leashable/*?} else {*/ /*Mob*//*?}*/ target) {
 			Entity currentLeashHolder = getLeashHolder(target);
 
 			if (clientboundSetEntityLinkPacket.getDestId() == 0) {
@@ -47,7 +47,7 @@ public abstract class LeashAttachMixin {
 
 					boolean hasOtherLeashedEntities = false;
 					for (Entity entity : nearby) {
-						if (entity instanceof /*? if >=1.21.1 {*//*Leashable*//*?} else {*/ Mob/*?}*/ leashable && leashable != target) {
+						if (entity instanceof /*? if >=1.21.1 {*/Leashable/*?} else {*/ /*Mob*//*?}*/ leashable && leashable != target) {
 							if (getLeashHolder(leashable) == player) {
 								hasOtherLeashedEntities = true;
 								break;
@@ -72,7 +72,7 @@ public abstract class LeashAttachMixin {
 
 						boolean hasOtherLeashedEntities = false;
 						for (Entity entity : nearby) {
-							if (entity instanceof /*? if >=1.21.1 {*//*Leashable*//*?} else {*/ Mob/*?}*/ leashable && leashable != target) {
+							if (entity instanceof /*? if >=1.21.1 {*/Leashable/*?} else {*/ /*Mob*//*?}*/ leashable && leashable != target) {
 								if (getLeashHolder(leashable) == player) {
 									hasOtherLeashedEntities = true;
 									break;
@@ -91,7 +91,7 @@ public abstract class LeashAttachMixin {
 	}
 
 	@Unique
-	private Entity getLeashHolder(/*? if >=1.21.1 {*//*Leashable*//*?} else {*/ Mob/*?}*/ leashable) {
+	private Entity getLeashHolder(/*? if >=1.21.1 {*/Leashable/*?} else {*/ /*Mob*//*?}*/ leashable) {
 		return leashable.getLeashHolder();
 	}
 }

@@ -1,7 +1,7 @@
 package com.github.razorplay01.ismah.mixin;
 //? if >= 1.21.9 {
 
-/*import com.github.razorplay01.ismah.client.util.LivingEntityRenderStateAccessor;
+import com.github.razorplay01.ismah.client.util.LivingEntityRenderStateAccessor;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -22,17 +22,17 @@ import java.util.stream.Collectors;
 @Mixin(ModelFeatureRenderer.class)
 public class ModelFeatureRendererMixin {
 	//? if <1.21.11{
-    @WrapOperation(
+    /*@WrapOperation(
             method = "renderModel(Lnet/minecraft/client/renderer/SubmitNodeStorage$ModelSubmit;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/OutlineBufferSource;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/Model;renderToBuffer(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V")
     )
-    //?}
+    *///?}
 	//? if >=1.21.11{
-	/^@WrapOperation(
+	@WrapOperation(
 			method = "renderModel(Lnet/minecraft/client/renderer/SubmitNodeStorage$ModelSubmit;Lnet/minecraft/client/renderer/rendertype/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/OutlineBufferSource;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;)V",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/Model;renderToBuffer(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V")
 	)
-			^///?}
+			//?}
 	private <S> void renderOnlyArms(
 			Model<S> sModel,
 			PoseStack poseStack,
@@ -79,4 +79,4 @@ public class ModelFeatureRendererMixin {
 		model.leftLeg.visible = bl;
 	}
 }
-*///?}
+//?}

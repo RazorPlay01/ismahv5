@@ -2,23 +2,23 @@ package com.github.razorplay01.ismah;
 
 import com.github.razorplay01.ismah.platform.Platform;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 //? fabric {
-/*import com.github.razorplay01.ismah.platform.fabric.FabricPlatform;
-*///?} neoforge {
+import com.github.razorplay01.ismah.platform.fabric.FabricPlatform;
+//?} neoforge {
 /*import com.github.razorplay01.ismah.platform.neoforge.NeoforgePlatform;
  *///?} forge {
-import com.github.razorplay01.ismah.platform.forge.ForgePlatform;
- //?}
+/*import com.github.razorplay01.ismah.platform.forge.ForgePlatform;
+ *///?}
 
 @SuppressWarnings("LoggingSimilarMessage")
 public class ModTemplate {
 
 	public static final String MOD_ID = /*$ mod_id*/ "ismah";
-	public static final String MOD_VERSION = /*$ mod_version*/ "5.5.7";
+	public static final String MOD_VERSION = /*$ mod_version*/ "5.5.8";
 	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "I See My Armored Hand";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -40,11 +40,11 @@ public class ModTemplate {
 
 	private static Platform createPlatformInstance() {
 		//? fabric {
-		/*return new FabricPlatform();
-		*///?} neoforge {
+		return new FabricPlatform();
+		//?} neoforge {
 		/*return new NeoforgePlatform();
 		 *///?} forge {
-		return new ForgePlatform();
-		 //?}
+		/*return new ForgePlatform();
+		 *///?}
 	}
 }

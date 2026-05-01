@@ -13,14 +13,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 //? if >=1.21.2{
-/*import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
- *///?}
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+ //?}
 //? if >=1.21.9{
-/*import net.minecraft.client.renderer.SubmitNodeCollector;
-*///?}
+import net.minecraft.client.renderer.SubmitNodeCollector;
+//?}
 
 //? if <1.21.2{
-@Mixin(HumanoidArmorLayer.class)
+/*@Mixin(HumanoidArmorLayer.class)
 public abstract class HumanoidArmorLayerMixin<T extends net.minecraft.world.entity.LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> extends RenderLayer<T, M> {
 	@Unique private net.minecraft.world.entity.LivingEntity ismah$livingEntity;
 	protected HumanoidArmorLayerMixin(RenderLayerParent<T, M> renderLayerParent) {
@@ -47,7 +47,7 @@ public abstract class HumanoidArmorLayerMixin<T extends net.minecraft.world.enti
 	) {
 	//? }
 	//? if neoforge {
-		/*@WrapWithCondition(
+		/^@WrapWithCondition(
 				method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V",
 				at = @At(
 						value = "INVOKE",
@@ -65,7 +65,7 @@ public abstract class HumanoidArmorLayerMixin<T extends net.minecraft.world.enti
 				float f, float g, float h, float j, float k, float l,
 				@com.llamalad7.mixinextras.sugar.Local(ordinal = 0) T livingEntityInstance
 	) {
-	*///? }
+	^///? }
 
 		ismah$livingEntity = livingEntityInstance;
 		if (!(livingEntityInstance instanceof net.minecraft.client.player.LocalPlayer)) return true;
@@ -96,10 +96,10 @@ public abstract class HumanoidArmorLayerMixin<T extends net.minecraft.world.enti
 		}
 	}
 }
-//?}
+*///?}
 
 //? if >=1.21.2{
-/*@Mixin(HumanoidArmorLayer.class)
+@Mixin(HumanoidArmorLayer.class)
 public abstract class HumanoidArmorLayerMixin<S extends HumanoidRenderState, M extends HumanoidModel<S>, A extends HumanoidModel<S>> extends RenderLayer<S, M> {
 	protected HumanoidArmorLayerMixin(RenderLayerParent<S, M> renderLayerParent) {
 		super(renderLayerParent);
@@ -109,7 +109,7 @@ public abstract class HumanoidArmorLayerMixin<S extends HumanoidRenderState, M e
 	private S renderState;
 
 	//? if <1.21.9{
-	@WrapWithCondition(
+	/*@WrapWithCondition(
 			method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/client/renderer/entity/state/HumanoidRenderState;FF)V",
 			at = @At(
 					value = "INVOKE",
@@ -150,11 +150,11 @@ public abstract class HumanoidArmorLayerMixin<S extends HumanoidRenderState, M e
 				humanoidModel.leftLeg.visible = true;
 		}
 	}
-	//?}
+	*///?}
 
 
 	//? if >=1.21.9{
-	/^@WrapWithCondition(
+	@WrapWithCondition(
 			method = "submit(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;ILnet/minecraft/client/renderer/entity/state/HumanoidRenderState;FF)V",
 			at = @At(
 					value = "INVOKE",
@@ -172,6 +172,6 @@ public abstract class HumanoidArmorLayerMixin<S extends HumanoidRenderState, M e
 	) {
 		return ((LivingEntityRenderStateAccessor) humanoidRenderState).getHumanoidArm() == null || equipmentSlot == EquipmentSlot.CHEST;
 	}
-	^///?}
+	//?}
 }
-*///?}
+//?}

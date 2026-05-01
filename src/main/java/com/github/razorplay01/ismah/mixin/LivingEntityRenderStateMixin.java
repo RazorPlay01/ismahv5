@@ -1,7 +1,7 @@
 package com.github.razorplay01.ismah.mixin;
 //? if >= 1.21.2 {
 
-/*import com.github.razorplay01.ismah.client.util.LivingEntityRenderStateAccessor;
+import com.github.razorplay01.ismah.client.util.LivingEntityRenderStateAccessor;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
@@ -49,4 +49,4 @@ public abstract class LivingEntityRenderStateMixin implements LivingEntityRender
 		return this.ismah$armPose;
 	}
 }
-*///?}
+//?}

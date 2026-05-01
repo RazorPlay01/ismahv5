@@ -10,7 +10,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(Player.class)
-public abstract class PlayerMixin implements LeashStateAccess, LivingEntityRenderStateAccessor {
+public abstract class PlayerMixin implements LeashStateAccess
+//? if >= 1.20 && <= 1.21.1 {
+//, LivingEntityRenderStateAccessor
+//?}
+{
 	@Unique
 	private boolean leashState = false;
 
@@ -25,7 +29,7 @@ public abstract class PlayerMixin implements LeashStateAccess, LivingEntityRende
 	}
 
 	//? if >= 1.20 && <= 1.21.1 {
-	@Unique
+	/*@Unique
 	private Entity entity;
 
 	@Unique
@@ -63,5 +67,5 @@ public abstract class PlayerMixin implements LeashStateAccess, LivingEntityRende
 	public @Nullable float[] getFirstPersonArmPose() {
 		return this.ismah$armPose;
 	}
-	//?}
+	*///?}
 }

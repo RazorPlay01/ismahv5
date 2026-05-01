@@ -9,7 +9,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class LeashRenderer {
 	private LeashRenderer() {
@@ -17,20 +17,20 @@ public class LeashRenderer {
 	}
 
 	private static final
-	ResourceLocation TEXTURE =
+	Identifier TEXTURE =
 			//? < 1.21 {
-			new
-			//?}
-			ResourceLocation
+			/*new
+			*///?}
+			Identifier
 			//? >= 1.21 {
-			/*.parse
-			*///?}
-			//? < 26 {
-			("textures/entity/lead_knot.png");
+			.parse
 			//?}
-			//? >= 26 {
-			/*("textures/entity/lead_knot/lead_knot.png");
+			//? < 26 {
+			/*("textures/entity/lead_knot.png");
 			*///?}
+			//? >= 26 {
+			("textures/entity/lead_knot/lead_knot.png");
+			//?}
 
 	public static final ModelPart RIGHT_LEASH = buildModel(
 			"leads$right_leash",
@@ -60,7 +60,7 @@ public class LeashRenderer {
 	}
 
 	//? if < 1.21.9 {
-	public static void renderArmLeash(PoseStack matrices, net.minecraft.client.renderer.MultiBufferSource multiBufferSource, int light, ModelPart arm, ModelPart leash) {
+	/*public static void renderArmLeash(PoseStack matrices, net.minecraft.client.renderer.MultiBufferSource multiBufferSource, int light, ModelPart arm, ModelPart leash) {
 		leash.x = arm.x;
 		leash.y = arm.y;
 		leash.z = arm.z;
@@ -73,10 +73,10 @@ public class LeashRenderer {
 
 		leash.render(matrices, multiBufferSource.getBuffer(net.minecraft.client.renderer.RenderType.entitySolid(TEXTURE)), light, OverlayTexture.NO_OVERLAY);
 	}
-	//?}
+	*///?}
 
 	//? if >= 1.21.9 {
-	/*public static void renderArmLeash(PoseStack matrices, net.minecraft.client.renderer.SubmitNodeCollector submitNodeCollector, int light, ModelPart arm, ModelPart leash) {
+	public static void renderArmLeash(PoseStack matrices, net.minecraft.client.renderer.SubmitNodeCollector submitNodeCollector, int light, ModelPart arm, ModelPart leash) {
 		leash.x = arm.x;
 		leash.y = arm.y;
 		leash.z = arm.z;
@@ -88,7 +88,7 @@ public class LeashRenderer {
 		leash.zScale = arm.zScale;
 
 
-		submitNodeCollector.submitModelPart(leash, matrices, /^? if <=1.21.10 {^/net.minecraft.client.renderer.RenderType/^?} else {^/ /^net.minecraft.client.renderer.rendertype.RenderTypes^//^?}^/.entitySolid(TEXTURE), light, OverlayTexture.NO_OVERLAY,
+		submitNodeCollector.submitModelPart(leash, matrices, /*? if <=1.21.10 {*//*net.minecraft.client.renderer.RenderType*//*?} else {*/ net.minecraft.client.renderer.rendertype.RenderTypes/*?}*/.entitySolid(TEXTURE), light, OverlayTexture.NO_OVERLAY,
 				null,
 				false,
 				false,
@@ -96,5 +96,5 @@ public class LeashRenderer {
 				null,
 				0);
 	}
-	*///?}
+	//?}
 }
