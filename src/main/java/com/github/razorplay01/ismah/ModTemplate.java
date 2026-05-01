@@ -2,7 +2,7 @@ package com.github.razorplay01.ismah;
 
 import com.github.razorplay01.ismah.platform.Platform;
 
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,21 +46,5 @@ public class ModTemplate {
 		 *///?} forge {
 		/*return new ForgePlatform();
 		 *///?}
-	}
-
-	private static Identifier id(String path) {
-		//? > 1.19.2 {
-		return Identifier.fromNamespaceAndPath(MOD_ID, path);
-		 //?} <= 1.19.2 {
-		/*return new Identifier(MOD_ID, path);
-		*///?}
-	}
-
-	private static Identifier id(String namespace, String path) {
-		//? > 1.19.2 {
-		return Identifier.fromNamespaceAndPath(namespace, path);
-		 //?} <= 1.19.2 {
-		/*return new Identifier(namespace, path);
-		*///?}
 	}
 }
