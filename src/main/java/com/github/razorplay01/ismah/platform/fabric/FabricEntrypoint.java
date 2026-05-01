@@ -2,7 +2,7 @@ package com.github.razorplay01.ismah.platform.fabric;
 
 //? fabric {
 
-import com.github.razorplay01.ismah.ModTemplate;
+/*import com.github.razorplay01.ismah.ModTemplate;
 import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ModInitializer;
 
@@ -14,4 +14,4 @@ public class FabricEntrypoint implements ModInitializer {
 		ModTemplate.onInitialize();
 	}
 }
-//?}
+*///?}
