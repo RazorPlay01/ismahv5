@@ -1,8 +1,8 @@
-package com.example.modtemplate.platform.forge;
+package com.github.razorplay01.ismah.platform.forge;
 
 //? forge {
 
-/*import com.example.modtemplate.event.ExampleEventHandler; // sample_content
+/*import com.github.razorplay01.ismah.event.ExampleEventHandler; // sample_content
 import net.minecraft.server.level.ServerPlayer; // sample_content
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

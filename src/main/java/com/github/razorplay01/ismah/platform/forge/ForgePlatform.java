@@ -1,8 +1,8 @@
-package com.example.modtemplate.platform.forge;
+package com.github.razorplay01.ismah.platform.forge;
 
 //? forge {
 
-/*import com.example.modtemplate.platform.Platform;
+/*import com.github.razorplay01.ismah.platform.Platform;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 

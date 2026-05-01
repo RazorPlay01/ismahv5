@@ -1,4 +1,4 @@
-package com.example.modtemplate.platform;
+package com.github.razorplay01.ismah.platform;
 
 public interface Platform {
 	boolean isModLoaded(String modId);

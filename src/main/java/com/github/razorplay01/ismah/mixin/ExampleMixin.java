@@ -1,6 +1,6 @@
-package com.example.modtemplate.mixin;
+package com.github.razorplay01.ismah.mixin;
 
-import com.example.modtemplate.ModTemplate;
+import com.github.razorplay01.ismah.ModTemplate;
 import dev.kikugie.fletching_table.annotation.MixinEnvironment;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;

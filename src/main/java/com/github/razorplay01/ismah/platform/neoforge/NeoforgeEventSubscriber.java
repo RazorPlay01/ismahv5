@@ -1,8 +1,8 @@
-package com.example.modtemplate.platform.neoforge;
+package com.github.razorplay01.ismah.platform.neoforge;
 
 //? neoforge {
 
-/*import com.example.modtemplate.event.ExampleEventHandler; // sample_content
+/*import com.github.razorplay01.ismah.event.ExampleEventHandler; // sample_content
 import net.minecraft.server.level.ServerPlayer; // sample_content
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

@@ -1,26 +1,22 @@
-mod.id = "modtemplate"
-mod.name = "Mod Template"
-mod.group = "com.example"
-mod.version = "0.1.0"
-mod.channel_tag = "-alpha.2"
-mod.description = "Example Description"
-mod.authors = ["AuthorName", "AnotherAuthorName"]
-mod.contributors = ["ContributorName", "AnotherContributorName"]
-mod.inception_year = "2025"
+mod.id = "ismah"
+mod.name = "I See My Armored Hand"
+mod.group = "com.github.razorplay01"
+mod.version = "5.5.6"
+mod.channel_tag = ""
+mod.description = "Tired of not seeing your equipped armor in first person? \n'I See My Armored Hand' adds a visual of your arm armor when looking down, providing increased immersion and a better sense of your character's protection."
+mod.authors = ["RazorPlay01"]
+mod.contributors = []
+mod.inception_year = "2026"
 mod.license.name = "MIT"
 mod.license.url = "https://opensource.org/licenses/MIT"
 mod.license.dist = "repo"
-mod.sources_url = "https://github.com/rotgruengelb/stonecutter-mod-template"
-mod.homepage_url = "https://github.com/rotgruengelb/stonecutter-mod-template"
-mod.issues_url = "https://github.com/rotgruengelb/stonecutter-mod-template/issues"
-mod.discord_url = "https://discord.gg/aunYJB4wz9"
+mod.sources_url = "https://github.com/RazorPlay01/I-See-My-Armored-Hand"
+mod.homepage_url = "https://github.com/RazorPlay01/I-See-My-Armored-Hand"
+mod.issues_url = "https://github.com/RazorPlay01/I-See-My-Armored-Hand/issues"
+mod.discord_url = "https://discord.gg/cgy5GvVJNy"
 [[mod.pom.developers]]
-id = "authorname"
-name = "AuthorName"
-url = "https://github.com/ghost"
-[[mod.pom.developers]]
-id = "anotherauthorname"
-name = "AnotherAuthorName"
+id = "razorplay01"
+name = "RazorPlay01"
 url = "https://github.com/ghost"
 
 [fabric]
