@@ -58,8 +58,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
 		@Override
 		public void buildRecipes(RecipeOutput recipeOutput) {
-			buildLavaChickenRecipe(ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.COOKED_CHICKEN))
-					.save(recipeOutput, "lava_chicken_recipe");
+
 		}
 		*///? } else {
 		protected IntRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
@@ -68,9 +67,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
 		@Override
 		public void buildRecipes() {
-			final var itemLookup = registries.lookupOrThrow(Registries.ITEM);
-			buildLavaChickenRecipe(ShapelessRecipeBuilder.shapeless(itemLookup, RecipeCategory.FOOD, Items.COOKED_CHICKEN))
-					.save(output, "lava_chicken_recipe");
+
 		}
 		//? }
 
