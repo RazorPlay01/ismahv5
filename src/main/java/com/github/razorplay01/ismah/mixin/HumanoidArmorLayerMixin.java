@@ -170,6 +170,7 @@ public abstract class HumanoidArmorLayerMixin<S extends HumanoidRenderState, M e
 			int i,
 			HumanoidRenderState humanoidRenderState
 	) {
+		if(humanoidRenderState instanceof LivingEntityRenderStateAccessor) return false;
 		return ((LivingEntityRenderStateAccessor) humanoidRenderState).getHumanoidArm() == null || equipmentSlot == EquipmentSlot.CHEST;
 	}
 	//?}

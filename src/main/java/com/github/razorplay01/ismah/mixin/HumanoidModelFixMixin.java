@@ -119,6 +119,7 @@ public abstract class HumanoidModelFixMixin<T extends HumanoidRenderState> exten
 			at = @At("RETURN")
 	)
 	private void fixArmRotationInFirstPerson(T state, CallbackInfo ci) {
+		if(state instanceof LivingEntityRenderStateAccessor) return;
 		LivingEntityRenderStateAccessor accessor = (LivingEntityRenderStateAccessor) state;
 		HumanoidArm arm = accessor.getHumanoidArm();
 		if (arm == null) return;

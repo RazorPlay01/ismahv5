@@ -324,6 +324,7 @@ public abstract class PlayerRendererMixin<AvatarlikeEntity extends Avatar & Clie
 	@Inject(method = "extractRenderState(Lnet/minecraft/world/entity/Avatar;Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;F)V",
 			at = @At("RETURN"))
 	private void onExtractRenderState(AvatarlikeEntity avatar, AvatarRenderState state, float f, CallbackInfo ci) {
+		if(state instanceof LivingEntityRenderStateAccessor) return;
 		((LivingEntityRenderStateAccessor) state).setEntity(avatar);
 	}
 
@@ -382,6 +383,7 @@ public abstract class PlayerRendererMixin<AvatarlikeEntity extends Avatar & Clie
 
 		var renderState = this.createRenderState();
 		this.extractRenderState((AvatarlikeEntity) player, renderState, client.getDeltaTracker().getGameTimeDeltaTicks());
+		if(renderState instanceof LivingEntityRenderStateAccessor) return;
 		((LivingEntityRenderStateAccessor) renderState).setHumanoidArm(arm);
 		((LivingEntityRenderStateAccessor) renderState).setFirstPersonArmPose(xRot, yRot, zRot, x, y, z);
 		renderState.outlineColor = 0;

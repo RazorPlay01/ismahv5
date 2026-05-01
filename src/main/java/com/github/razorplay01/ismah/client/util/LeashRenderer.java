@@ -26,11 +26,11 @@ public class LeashRenderer {
 			.parse
 			//?}
 			//? < 26 {
-			/*("textures/entity/lead_knot.png");
-			*///?}
-			//? >= 26 {
-			("textures/entity/lead_knot/lead_knot.png");
+			("textures/entity/lead_knot.png");
 			//?}
+			//? >= 26 {
+			/*("textures/entity/lead_knot/lead_knot.png");
+			*///?}
 
 	public static final ModelPart RIGHT_LEASH = buildModel(
 			"leads$right_leash",

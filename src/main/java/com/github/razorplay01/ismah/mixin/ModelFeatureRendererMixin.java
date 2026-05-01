@@ -45,7 +45,8 @@ public class ModelFeatureRendererMixin {
 	) {
 		if (!(sModel instanceof HumanoidModel<?> armorModel)
 				|| !(sModelSubmit.state() instanceof HumanoidRenderState livingEntityRenderState)
-				|| !(((LivingEntityRenderStateAccessor) livingEntityRenderState).getHumanoidArm() instanceof HumanoidArm arm)) {
+				|| !(livingEntityRenderState instanceof LivingEntityRenderStateAccessor livingEntityRenderStateAccessor)
+				|| !(livingEntityRenderStateAccessor.getHumanoidArm() instanceof HumanoidArm arm)) {
 			original.call(sModel, poseStack, vertexConsumer, light, overlay, color);
 			return;
 		}

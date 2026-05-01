@@ -1,7 +1,7 @@
 mod.id = "ismah"
 mod.name = "I See My Armored Hand"
 mod.group = "com.github.razorplay01"
-mod.version = "5.5.9"
+mod.version = "5.5.10"
 mod.channel_tag = ""
 mod.description = "Tired of not seeing your equipped armor in first person? \n'I See My Armored Hand' adds a visual of your arm armor when looking down, providing increased immersion and a better sense of your character's protection."
 mod.authors = ["RazorPlay01"]

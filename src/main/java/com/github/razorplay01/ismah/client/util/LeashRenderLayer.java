@@ -76,6 +76,7 @@ public class LeashRenderLayer<T extends net.minecraft.client.renderer.entity.sta
 	//? if >= 1.21.9 {
 	@Override
 	public void submit(PoseStack poseStack, net.minecraft.client.renderer.SubmitNodeCollector submitNodeCollector, int light, T entityRenderState, float f, float g) {
+		if(entityRenderState instanceof LivingEntityRenderStateAccessor) return;
 		if (!(((LivingEntityRenderStateAccessor) entityRenderState).getEntity() instanceof Player player)) return;
 		if (!(player instanceof net.minecraft.client.player.LocalPlayer localPlayer)) return;
 		if (((LeashStateAccess) localPlayer).getLeashState()) {
