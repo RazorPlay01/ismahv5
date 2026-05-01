@@ -1,7 +1,7 @@
 mod.id = "ismah"
 mod.name = "I See My Armored Hand"
 mod.group = "com.github.razorplay01"
-mod.version = "5.5.7"
+mod.version = "5.5.8"
 mod.channel_tag = ""
 mod.description = "Tired of not seeing your equipped armor in first person? \n'I See My Armored Hand' adds a visual of your arm armor when looking down, providing increased immersion and a better sense of your character's protection."
 mod.authors = ["RazorPlay01"]
@@ -47,6 +47,7 @@ publish.additionalVersions = ["1.21.5","1.21.6","1.21.8","1.21.9"]
 deps.minecraft = "1.21.11"
 deps.fabric-api = "0.139.4+1.21.11"
 deps.modmenu = "17.0.0-alpha.1"
+publish.additionalVersions = ["1.21.10"]
 
 [fabric."26.1.2"]
 deps.minecraft = "26.1.2"
@@ -78,6 +79,7 @@ publish.additionalVersions = ["1.21.5","1.21.6","1.21.8","1.21.9"]
 [neoforge."1.21.11"]
 deps.minecraft = "1.21.11"
 deps.neoforge = "21.11.0-beta"
+publish.additionalVersions = ["1.21.10"]
 
 [neoforge."26.1.2"]
 deps.minecraft = "26.1.2"
