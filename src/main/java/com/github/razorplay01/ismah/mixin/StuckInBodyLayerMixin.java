@@ -130,7 +130,7 @@ public abstract class StuckInBodyLayerMixin<M extends PlayerModel, S> extends Re
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/layers/StuckInBodyLayer;submitStuckItem(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;IFFFI)V")
 	)
 	private boolean shouldRenderObject(StuckInBodyLayer instance, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, float f, float g, float h, int j) {
-		if(ismah$renderState instanceof LivingEntityRenderStateAccessor) return false;
+		if(!(ismah$renderState instanceof LivingEntityRenderStateAccessor)) return false;
 		HumanoidArm arm = ((LivingEntityRenderStateAccessor) ismah$renderState).getHumanoidArm();
 		if (arm == null) return true;
 		if (this.getParentModel() instanceof HumanoidModel<?> model) {
