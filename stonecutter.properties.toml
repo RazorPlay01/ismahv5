@@ -1,7 +1,7 @@
 mod.id = "ismah"
 mod.name = "I See My Armored Hand"
 mod.group = "com.github.razorplay01"
-mod.version = "5.5.11"
+mod.version = "5.6.0"
 mod.channel_tag = ""
 mod.description = "Tired of not seeing your equipped armor in first person? \n'I See My Armored Hand' adds a visual of your arm armor when looking down, providing increased immersion and a better sense of your character's protection."
 mod.authors = ["RazorPlay01"]
@@ -17,7 +17,7 @@ mod.discord_url = "https://discord.gg/cgy5GvVJNy"
 [[mod.pom.developers]]
 id = "razorplay01"
 name = "RazorPlay01"
-url = "https://github.com/ghost"
+url = "https://github.com/razorplay01"
 
 [fabric]
 deps.fabric-loader = "0.19.2"
@@ -35,19 +35,19 @@ deps.modmenu = "7.2.2"
 [fabric."1.21.1"]
 deps.minecraft = "1.21.1"
 deps.fabric-api = "0.116.7+1.21.1"
-deps.modmenu = "15.0.0"
+deps.modmenu = "11.0.4"
 
 [fabric."1.21.7"]
 deps.minecraft = "1.21.7"
 deps.fabric-api = "0.128.1+1.21.7"
 deps.modmenu = "15.0.0"
-publish.additionalVersions = ["1.21.5","1.21.6","1.21.8","1.21.9"]
+publish.additionalVersions = ["1.21.5","1.21.6","1.21.8"]
 
 [fabric."1.21.11"]
 deps.minecraft = "1.21.11"
 deps.fabric-api = "0.139.4+1.21.11"
 deps.modmenu = "17.0.0-alpha.1"
-publish.additionalVersions = ["1.21.10"]
+publish.additionalVersions = ["1.21.9","1.21.10"]
 
 [fabric."26.1.2"]
 deps.minecraft = "26.1.2"
@@ -74,12 +74,12 @@ deps.neoforge = "21.1.213"
 [neoforge."1.21.7"]
 deps.minecraft = "1.21.7"
 deps.neoforge = "21.7.1-beta"
-publish.additionalVersions = ["1.21.5","1.21.6","1.21.8","1.21.9"]
+publish.additionalVersions = ["1.21.5","1.21.6","1.21.8"]
 
 [neoforge."1.21.11"]
 deps.minecraft = "1.21.11"
 deps.neoforge = "21.11.0-beta"
-publish.additionalVersions = ["1.21.10"]
+publish.additionalVersions = ["1.21.9","1.21.10"]
 
 [neoforge."26.1.2"]
 deps.minecraft = "26.1.2"
