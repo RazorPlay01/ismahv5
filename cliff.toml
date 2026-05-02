@@ -47,6 +47,8 @@ body = """
 {% for c in contributors %}
 - {{ c }}
 {% endfor %}
+## Contribute
+If you like my mods and want to support my work, go [here](https://boosty.to/razorplay) :)
 """
 # A Tera template to be rendered as the changelog's footer.
 # See https://keats.github.io/tera/docs/#introduction
