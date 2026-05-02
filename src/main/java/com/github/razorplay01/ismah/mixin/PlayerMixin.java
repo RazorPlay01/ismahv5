@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements LeashStateAccess
-//? if >= 1.20 && <= 1.21.1 {
+//? if <= 1.21.1 {
 /*, LivingEntityRenderStateAccessor
 *///?}
 {
@@ -28,7 +28,7 @@ public abstract class PlayerMixin implements LeashStateAccess
 		leashState = state;
 	}
 
-	//? if >= 1.20 && <= 1.21.1 {
+	//? if <= 1.21.1 {
 	/*@Unique
 	private Entity entity;
 

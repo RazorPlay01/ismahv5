@@ -18,10 +18,10 @@ import java.util.List;
 
 //? if < 1.21.1 {
 /*import net.minecraft.world.entity.Mob;
-*///?}
+ *///?}
 //? if >= 1.21.1 {
 import net.minecraft.world.entity.Leashable;
- //?}
+//?}
 
 @Mixin(ClientPacketListener.class)
 public abstract class LeashAttachMixin {
@@ -30,68 +30,78 @@ public abstract class LeashAttachMixin {
 
 	//? if < 1.21.1 {
 	/*@Inject(method = "handleEntityLinkPacket(Lnet/minecraft/network/protocol/game/ClientboundSetEntityLinkPacket;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;setDelayedLeashHolderId(I)V"))
-	*///?}
+	 *///?}
 	//? if >= 1.21.1 {
 	@Inject(method = "handleEntityLinkPacket", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Leashable;setDelayedLeashHolderId(I)V"))
 	//?}
-	private void onEntityAttach(ClientboundSetEntityLinkPacket clientboundSetEntityLinkPacket, CallbackInfo ci) {
-		Entity entity1 = this.level.getEntity(clientboundSetEntityLinkPacket.getSourceId());
-		if (entity1 instanceof /*? if >=1.21.1 {*/Leashable/*?} else {*/ /*Mob*//*?}*/ target) {
-			Entity currentLeashHolder = getLeashHolder(target);
+	private void onEntityAttach(ClientboundSetEntityLinkPacket packet, CallbackInfo ci) {
+		Entity entity = this.level.getEntity(packet.getSourceId());
+		if (!(isLeashable(entity))) return;
 
-			if (clientboundSetEntityLinkPacket.getDestId() == 0) {
-				if (currentLeashHolder instanceof AbstractClientPlayer player) {
-					AABB box = new AABB(player.getX() - 16.0, player.getY() - 16.0, player.getZ() - 16.0,
-							player.getX() + 16.0, player.getY() + 16.0, player.getZ() + 16.0);
-					List<Entity> nearby = player.level().getEntitiesOfClass(Entity.class, box);
+		var target = (/*? if >=1.21.1 {*/ Leashable /*?} else {*/ /*Mob*//*?}*/) entity;
 
-					boolean hasOtherLeashedEntities = false;
-					for (Entity entity : nearby) {
-						if (entity instanceof /*? if >=1.21.1 {*/Leashable/*?} else {*/ /*Mob*//*?}*/ leashable && leashable != target) {
-							if (getLeashHolder(leashable) == player) {
-								hasOtherLeashedEntities = true;
-								break;
-							}
-						}
-					}
+		Entity currentHolder = getLeashHolder(target);
+		int newHolderId = packet.getDestId();
 
-					if (!hasOtherLeashedEntities) {
-						if (!(player instanceof LeashStateAccess leashAccess)) return;
-						leashAccess.setLeashState(false);
-					}
-				}
-			} else {
-				Entity newLeashHolder = level.getEntity(clientboundSetEntityLinkPacket.getDestId());
-				if (newLeashHolder instanceof LeashStateAccess player) {
-					player.setLeashState(true);
-				} else {
-					if (currentLeashHolder instanceof AbstractClientPlayer player) {
-						AABB box = new AABB(player.getX() - 16.0, player.getY() - 16.0, player.getZ() - 16.0,
-								player.getX() + 16.0, player.getY() + 16.0, player.getZ() + 16.0);
-						List<Entity> nearby = player.level().getEntitiesOfClass(Entity.class, box);
+		if (newHolderId == 0) {
+			// Se está soltando la correa
+			if (currentHolder instanceof AbstractClientPlayer player) {
+				tryRemoveLeashState(player, target);
+			}
+		} else {
+			// Se está asignando una nueva correa
+			Entity newHolder = level.getEntity(newHolderId);
 
-						boolean hasOtherLeashedEntities = false;
-						for (Entity entity : nearby) {
-							if (entity instanceof /*? if >=1.21.1 {*/Leashable/*?} else {*/ /*Mob*//*?}*/ leashable && leashable != target) {
-								if (getLeashHolder(leashable) == player) {
-									hasOtherLeashedEntities = true;
-									break;
-								}
-							}
-						}
-
-						if (!hasOtherLeashedEntities) {
-							if (!(player instanceof LeashStateAccess leashAccess)) return;
-							leashAccess.setLeashState(false);
-						}
-					}
-				}
+			if (newHolder instanceof LeashStateAccess access) {
+				access.setLeashState(true);
+			} else if (currentHolder instanceof AbstractClientPlayer player) {
+				tryRemoveLeashState(player, target);
 			}
 		}
 	}
 
 	@Unique
-	private Entity getLeashHolder(/*? if >=1.21.1 {*/Leashable/*?} else {*/ /*Mob*//*?}*/ leashable) {
+	private boolean isLeashable(Entity entity) {
+		//? if >= 1.21.1 {
+		return entity instanceof Leashable;
+		//?} else {
+		/*return entity instanceof Mob;*/
+		//?}
+	}
+
+	@Unique
+	private Entity getLeashHolder(/*? if >=1.21.1 {*/ Leashable /*?} else {*/ /*Mob*//*?}*/ leashable) {
 		return leashable.getLeashHolder();
+	}
+
+	@Unique
+	private void tryRemoveLeashState(AbstractClientPlayer player, /*? if >=1.21.1 {*/ Leashable /*?} else {*/ /*Mob*//*?}*/ target) {
+		if (!hasOtherLeashedEntities(player, target)) {
+			if (player instanceof LeashStateAccess access) {
+				access.setLeashState(false);
+			}
+		}
+	}
+
+	@Unique
+	private boolean hasOtherLeashedEntities(AbstractClientPlayer player, /*? if >=1.21.1 {*/ Leashable /*?} else {*/ /*Mob*//*?}*/ excluded) {
+		AABB box = new AABB(
+				player.getX() - 16, player.getY() - 16, player.getZ() - 16,
+				player.getX() + 16, player.getY() + 16, player.getZ() + 16
+		);
+
+		List<Entity> nearby = player.level().getEntitiesOfClass(Entity.class, box);
+
+		for (Entity entity : nearby) {
+			if (entity == excluded) continue;
+
+			if (isLeashable(entity)) {
+				var leashable = (/*? if >=1.21.1 {*/ Leashable /*?} else {*/ /*Mob*//*?}*/) entity;
+				if (getLeashHolder(leashable) == player) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

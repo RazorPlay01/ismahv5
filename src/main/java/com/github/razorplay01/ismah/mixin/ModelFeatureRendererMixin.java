@@ -51,7 +51,6 @@ public class ModelFeatureRendererMixin {
 			return;
 		}
 
-		// Solo manejar visibilidad — la rotación ya fue aplicada por HumanoidModelFixMixin
 		var previousVisibilities = armorModel.allParts().stream()
 				.collect(Collectors.toMap(mp -> mp, mp -> mp.visible));
 
