@@ -81,8 +81,7 @@ public abstract class HumanoidModelFixMixin<T extends /*? if >=1.21.2 {*/Humanoi
 			at = @At("RETURN")
 	)
 	private void fixArmRotationInFirstPerson(T state, CallbackInfo ci) {
-		if(!(state instanceof LivingEntityRenderStateAccessor)) return;
-		LivingEntityRenderStateAccessor accessor = (LivingEntityRenderStateAccessor) state;
+		if(!(state instanceof LivingEntityRenderStateAccessor accessor)) return;
 		//?}
 		HumanoidArm arm = accessor.getHumanoidArm();
 		if (arm == null) return;

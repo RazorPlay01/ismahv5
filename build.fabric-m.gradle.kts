@@ -90,4 +90,6 @@ dependencies {
 	// include(libs.moulberry.mixinconstraints)
 	implementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
 	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
+	implementation("maven.modrinth:entity-model-features:${prop("deps.emf")}")
+	implementation("maven.modrinth:entitytexturefeatures:${prop("deps.etf")}")
 }
