@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 import java.util.List;
+import java.util.Map;
 
 @Mixin(ModelPart.class)
 public interface ModelPartAccessor {
@@ -15,4 +16,7 @@ public interface ModelPartAccessor {
 
 	@Accessor("cubes")
 	List<ModelPart.Cube> ismah$getCubes();
+
+	@Accessor("children")
+	Map<String, ModelPart> ismah$getChildren();
 }

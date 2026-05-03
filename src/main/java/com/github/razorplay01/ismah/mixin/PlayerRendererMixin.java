@@ -274,7 +274,6 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<net.minec
 			this.arrowLayer.render(poseStack, multiBufferSource, light, renderState, 0f, 0f);
 		}
 		if (this.leashRenderLayer != null) {
-			System.out.println(3);
 			this.leashRenderLayer.render(poseStack, multiBufferSource, light, renderState, 0f, 0f);
 		}
 
@@ -383,10 +382,9 @@ public abstract class PlayerRendererMixin<AvatarlikeEntity extends Avatar & Clie
 
 		var renderState = this.createRenderState();
 		this.extractRenderState((AvatarlikeEntity) player, renderState, client.getDeltaTracker().getGameTimeDeltaTicks());
-		if(!(renderState instanceof LivingEntityRenderStateAccessor)) return;
-		((LivingEntityRenderStateAccessor) renderState).setHumanoidArm(arm);
-		((LivingEntityRenderStateAccessor) renderState).setFirstPersonArmPose(xRot, yRot, zRot, x, y, z);
-		renderState.outlineColor = 0;
+		if(!(renderState instanceof LivingEntityRenderStateAccessor accessor)) return;
+		accessor.setHumanoidArm(arm);
+		accessor.setFirstPersonArmPose(xRot, yRot, zRot, x, y, z);
 
 		if (!player.isInvisible()) {
 			original.call(instance, modelPart, poseStack, renderType, light, overlay, textureAtlasSprite);

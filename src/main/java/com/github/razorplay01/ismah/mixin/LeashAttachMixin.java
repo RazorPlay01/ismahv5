@@ -65,8 +65,8 @@ public abstract class LeashAttachMixin {
 		//? if >= 1.21.1 {
 		return entity instanceof Leashable;
 		//?} else {
-		/*return entity instanceof Mob;*/
-		//?}
+		/*return entity instanceof Mob;
+		*///?}
 	}
 
 	@Unique

@@ -25,6 +25,24 @@ platform {
 	}
 }
 
+mixins {
+	common {
+		always(
+			"accesor.LivingEntityRendererAccesor",
+			"accesor.ModelPartAccessor",
+			"accesor.PlayerModelAccesor",
+			"HumanoidArmorLayerMixin",
+			"HumanoidModelFixMixin",
+			"LeashAttachMixin",
+			"PlayerMixin",
+			"PlayerRendererMixin",
+			"StuckInBodyLayerMixin"
+		)
+		minVersion("1.21.2","LivingEntityRenderStateMixin")
+		minVersion("1.21.9","ModelFeatureRendererMixin")
+	}
+}
+
 legacyForge {
 	version = "${prop("deps.minecraft")}-${prop("deps.forge")}"
 

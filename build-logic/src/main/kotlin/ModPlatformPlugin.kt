@@ -8,12 +8,12 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
 import org.gradle.internal.extensions.stdlib.toDefaultLowerCase
 import org.gradle.jvm.tasks.Jar
@@ -41,14 +41,17 @@ fun RepositoryHandler.strictMaven(
 
 abstract class GenerateModManifestTask : DefaultTask() {
 	@get:Input
+	abstract val manifestPath: Property<String>
+
+	@get:Input
 	abstract val content: Property<String>
 
-	@get:OutputFile
-	abstract val outputFile: RegularFileProperty
+	@get:OutputDirectory
+	abstract val outputDir: DirectoryProperty
 
 	@TaskAction
 	fun generate() {
-		val file = outputFile.get().asFile
+		val file = outputDir.get().asFile.resolve(manifestPath.get())
 		file.parentFile.mkdirs()
 		file.writeText(content.get())
 	}
@@ -63,6 +66,8 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 			jarTask.convention(inferredLoader.jarTask)
 			sourcesJarTask.convention(inferredLoader.sourcesJarTask)
 		}
+
+		extensions.create("mixins", MixinsExtension::class.java)
 
 		listOf("org.jetbrains.kotlin.jvm", "com.google.devtools.ksp", "dev.kikugie.fletching-table").forEach {
 			apply(
@@ -118,10 +123,12 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	}
 
 	private fun Project.registerGenerateManifestTask(ctx: Context) {
+
 		val manifestOutputDir = layout.buildDirectory.dir("generated/modManifest")
 		val generateTask = tasks.register<GenerateModManifestTask>("generateModManifest") {
+			manifestPath.set(ctx.loader.modManifestPath)
 			content.set(ctx.loader.generateManifest(ctx))
-			outputFile.set(layout.buildDirectory.file("generated/modManifest/${ctx.loader.modManifestPath}"))
+			outputDir.set(manifestOutputDir)
 		}
 
 		the<JavaPluginExtension>().sourceSets.named("main") { resources.srcDir(manifestOutputDir) }
@@ -133,12 +140,50 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 		}
 	}
 
+	@Suppress("UnstableApiUsage")
 	private fun Project.configureProcessResources(ctx: Context) {
 		tasks.named<ProcessResources>("processResources") {
 			dependsOn(tasks.named("stonecutterGenerate"), "kspKotlin")
-			filesMatching("*.mixins.json") {
-				expand("java" to "JAVA_${ctx.javaVersion.majorVersion}")
+
+			val mcVersion = ctx.stonecutter.current.version.split("-")[0]
+			val mixinsExt = project.extensions.findByType<MixinsExtension>()
+
+			if (mixinsExt != null && mixinsExt.hasAnyMixins()) {
+				val commonMixins = resolveMixinsForVersion(mixinsExt.common, mcVersion, ctx.stonecutter)
+				val clientMixins = resolveMixinsForVersion(mixinsExt.client, mcVersion, ctx.stonecutter)
+				val serverMixins = resolveMixinsForVersion(mixinsExt.server, mcVersion, ctx.stonecutter)
+
+				val commonArray = commonMixins.toMixinJsonArray()
+				val clientArray = clientMixins.toMixinJsonArray()
+				val serverArray = serverMixins.toMixinJsonArray()
+
+				logMixinConfiguration(
+					logger = project.logger,
+					mcVersion = mcVersion,
+					commonCount = commonMixins.size,
+					clientCount = clientMixins.size,
+					serverCount = serverMixins.size
+				)
+
+				filesMatching("*.mixins.json") {
+					expand(
+						"java" to "JAVA_${ctx.javaVersion.majorVersion}",
+						"common_array" to commonArray,
+						"client_array" to clientArray,
+						"server_array" to serverArray
+					)
+				}
+
+				inputs.property("mcVersion", mcVersion)
+				inputs.property("commonMixins", commonArray)
+				inputs.property("clientMixins", clientArray)
+				inputs.property("serverMixins", serverArray)
+			} else {
+				filesMatching("*.mixins.json") {
+					expand("java" to "JAVA_${ctx.javaVersion.majorVersion}")
+				}
 			}
+
 			exclude(ctx.loader.excludedResources)
 		}
 	}
