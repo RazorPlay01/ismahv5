@@ -165,26 +165,40 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 					serverCount = serverMixins.size
 				)
 
-				filesMatching("*.mixins.json") {
-					expand(
-						"java" to "JAVA_${ctx.javaVersion.majorVersion}",
-						"common_array" to commonArray,
-						"client_array" to clientArray,
-						"server_array" to serverArray
-					)
-				}
+				processMixinFiles(ctx, mapOf(
+					"java" to "JAVA_${ctx.javaVersion.majorVersion}",
+					"common_array" to commonArray,
+					"client_array" to clientArray,
+					"server_array" to serverArray
+				))
 
 				inputs.property("mcVersion", mcVersion)
 				inputs.property("commonMixins", commonArray)
 				inputs.property("clientMixins", clientArray)
 				inputs.property("serverMixins", serverArray)
 			} else {
-				filesMatching("*.mixins.json") {
-					expand("java" to "JAVA_${ctx.javaVersion.majorVersion}")
-				}
+				processMixinFiles(ctx, mapOf(
+					"java" to "JAVA_${ctx.javaVersion.majorVersion}"
+				))
 			}
 
 			exclude(ctx.loader.excludedResources)
+		}
+	}
+
+	private fun ProcessResources.processMixinFiles(ctx: Context, expansionMap: Map<String, String>) {
+		filesMatching("*.mixins.json") {
+			expand(expansionMap)
+
+				if (ctx.loader is Loader.Forge) {
+				filter { line ->
+					if (line.contains("\"package\"") && line.trim().endsWith(",")) {
+						line + "\n    \"refmap\": \"${ctx.modId}.mixins.refmap.json\","
+					} else {
+						line
+					}
+				}
+			}
 		}
 	}
 
